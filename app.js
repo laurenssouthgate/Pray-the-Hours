@@ -4,11 +4,75 @@ const menuLinks = document.querySelector('.navbar__menu');
 const mobileMenu = () => {
     menu.classList.toggle('is-active')
     menuLinks.classList.toggle('active')
+};
+
+menu.addEventListener('click', mobileMenu);
+
+var startDate = new Date('2022-08-21');
+var today = new Date();
+
+if (today > new Date('2023-04-23')) {
+    startDate = new Date('2023-04-23');
+};
+if (today > new Date('2024-05-12')) {
+    startDate = new Date('2024-05-12');
+};
+if (today > new Date('2025-04-27')) {
+    startDate = new Date('2025-04-27');
+};
+if (today > new Date('2026-04-19')) {
+    startDate = new Date('2026-04-19');
+};
+if (today > new Date('2027-05-09')) {
+    startDate = new Date('2027-05-09');
+};
+if (today > new Date('2028-04-23')) {
+    startDate = new Date('2028-04-23');
+};
+if (today > new Date('2029-04-15')) {
+    startDate = new Date('2029-04-15');
+};
+if (today > new Date('2030-05-04')) {
+    startDate = new Date('2030-05-04');
+};
+if (today > new Date('2031-04-20')) {
+    startDate = new Date('2031-04-20');
+};
+if (today > new Date('2032-05-09')) {
+    startDate = new Date('2032-05-09');
+};
+if (today > new Date('2033-04-31')) {
+    startDate = new Date('2033-04-31');
+};
+if (today > new Date('2034-04-16')) {
+    startDate = new Date('2034-04-16');
+};
+
+
+
+function diffInDays(a, b){
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 }
 
-menu.addEventListener('click', mobileMenu)
+function get_week(startDate, today) {
+    var cycle = 8;
+    var days = diffInDays(startDate, today);
+    var weeks = Math.floor(days / 7);
+    var week_num = ((weeks % cycle) + cycle) % cycle;
+    return week_num
+  }
 
-const today = new Date().getDay();
+var test_date = new Date('2023-04-30');
+    for (var i = 0; i < 8 + 1; i++) {
+        console.log(test_date.toString() + " is on week #" + (get_week(startDate, test_date) + 1));
+        test_date.setDate(test_date.getDate() + 7);
+}
+
+var tone = get_week(startDate, today) + 1;
+
 
 const selector = function(tag, text) {
     var e = document.querySelectorAll(tag);
@@ -19,39 +83,55 @@ const selector = function(tag, text) {
 };
 
 const dailyTroparion = function() {
-    if (today === 0){
-        var troparion = selector('.troparion', "<h2>Tone One</h2><p>When the stone had been sealed by the Jews, and the soldiers were guarding Thine immaculate Body, \
-            Thou didst arise on the third day, O Saviour, granting life unto the world. Wherefore, the Hosts of the heavens cried out to Thee, O Life giver: \
-            Glory to Thy Resurrection, O Christ. Glory to Thy Kingdom. Glory to Thy dispensation, O only Lover of mankind.</p>\
-            <h2>Tone Two</h2><p>When Thou didst descend unto death, O Life Immortal, then didst Thou slay hades with the lightning of Thy Divinity. And when Thou \
-            didst also raise the dead out of the nethermost depths, all the Hosts of the heavens cried out: O Life-giver, Christ our God, glory be to Thee.</p>\
-            <h2>Tone Three</h2><p>Let the heavens be glad; let earthly things rejoice; for the Lord hath wrought might with His arm. He hath trampled down death by death; \
-            the firstborn of the dead hath He become. From the belly of hades hath He delivered us and hath granted to the wrold great mercy.</p>\
-            <h2>Tone Four</h2><p>Having learned the joyful proclaimation of the Resurrection from the angel, and having cast off the ancestral condemnation, the women \
-            disciples of the Lord spake to the apostles exultantly: Death is despoiled and Christ God is risen, granting to the world great mercy.</p>\
-            <h2>Tone Five</h2><p>Let us the faithful, praise and worship the Word Who is co-unoriginate with the Father and the Spirit, and Who was born of the Virgin \
-            for our salvation; for He was pleased to ascend the Cross in the flesh and to endure death, and to raise the dead by His glorious Resurrection.</p>\
-            <h2>Tone Six</h2><p>Angleic Hosts were above Thy tomb, and they that guarded Thee became as dead. And Mary stood by the grave seeking Thine immaculate Body.\
-            Thou didst despoil hades and wast not tempted by it. Thou didst meet the Virgin and didst grant us life. O Thou who didst rise from the dead, O Lord, glory be to Thee.</p>\
-            <h2>Tone Seven</h2><p>Thou didst destroy death by Thy Cross, Thou didst open Paradise to the theif. Thou didst change the lamentation of the Myrrh-bearers, \
-            and Thou didst command Thine Apostles to proclaim that Thou didst arise, O Christ God, and grantest to the world great mercy.</p>\
-            <h2>Tone Eight</h2><p>From on high didst Thou descend, O Compassionate One; to burial of three days hast Thou submitted that Thou mightest free us from our passions. \
+    if (today.getDay() === 0){
+        if (tone === 1){
+            var troparion = selector('.troparion', "When the stone had been sealed by the Jews, and the soldiers were guarding Thine immaculate Body, \
+                Thou didst arise on the third day, O Saviour, granting life unto the world. Wherefore, the Hosts of the heavens cried out to Thee, O Life giver: \
+                Glory to Thy Resurrection, O Christ. Glory to Thy Kingdom. Glory to Thy dispensation, O only Lover of mankind.");
+        }
+        else if (tone === 2){
+            var troparion = selector('.troparion', "When Thou didst descend unto death, O Life Immortal, then didst Thou slay hades with the lightning of Thy Divinity. And when Thou \
+            didst also raise the dead out of the nethermost depths, all the Hosts of the heavens cried out: O Life-giver, Christ our God, glory be to Thee.");
+        }
+        else if (tone === 3){
+            var troparion = selector('.troparion', "Let the heavens be glad; let earthly things rejoice; for the Lord hath wrought might with His arm. He hath trampled down death by death; \
+            the firstborn of the dead hath He become. From the belly of hades hath He delivered us and hath granted to the wrold great mercy.");
+        }
+        else if (tone === 4){
+            var troparion = selector('.troparion', "Having learned the joyful proclaimation of the Resurrection from the angel, and having cast off the ancestral condemnation, the women \
+            disciples of the Lord spake to the apostles exultantly: Death is despoiled and Christ God is risen, granting to the world great mercy.");
+        }
+        else if (tone === 5){
+            var troparion = selector('.troparion', "Let us the faithful, praise and worship the Word Who is co-unoriginate with the Father and the Spirit, and Who was born of the Virgin \
+            for our salvation; for He was pleased to ascend the Cross in the flesh and to endure death, and to raise the dead by His glorious Resurrection.");
+        }
+        else if (tone === 6){
+            var troparion = selector('.troparion',"Angleic Hosts were above Thy tomb, and they that guarded Thee became as dead. And Mary stood by the grave seeking Thine immaculate Body.\
+            Thou didst despoil hades and wast not tempted by it. Thou didst meet the Virgin and didst grant us life. O Thou who didst rise from the dead, O Lord, glory be to Thee.");
+        }
+        else if (tone === 7){
+            var troparion = selector('.troparion', "Thou didst destroy death by Thy Cross, Thou didst open Paradise to the theif. Thou didst change the lamentation of the Myrrh-bearers, \
+            and Thou didst command Thine Apostles to proclaim that Thou didst arise, O Christ God, and grantest to the world great mercy.");
+        }
+        else{
+            var troparion = selector('.troparion', "From on high didst Thou descend, O Compassionate One; to burial of three days hast Thou submitted that Thou mightest free us from our passions. \
             O our Life and Resurrection, O Lord, glory be to Thee");
+        };
     }
-    else if (today === 1){
+    else if (today.getDay() === 1){
         var troparion = selector('.troparion', "Supreme Commanders of the heavenly hosts, we unworthy ones implore you that by your supplications ye will encircle us with the \
             shelter of the wings of your immaterial glory, and guard us who fall down before you and fervently cry: Deliver us from dangers since ye are the Marshals of the Hosts on high.");
     }
-    else if (today === 2){
+    else if (today.getDay() === 2){
         var troparion = selector('.troparion', "The memory of the righteous is celebrated with hymns of praise, but the Lord's testimony is sufficient for thee, O Forerunner; for thou hast proved \
             to be truly even more venerable than the prophets, since thou wast granted to baptize in the running waters Him Whom they proclaimed. Wherefore having contested for the truth \
             thou didst rejoice to announce the good tidings even to those in hades: that God hath appeared in the flesh, taking away the sin of the world and granting us great mercy.");
     }
-    else if (today === 4){
+    else if (today.getDay() === 4){
         var troparion = selector('.troparion', "The truth of things revealed thee to thy flock as a rule of faith, an icon of meekness and a teacher of temperance; therefore thou hast \
             achieved the heights by humility, riches by poverty. O Father and Hierarch Nicholas, intercede with Christ God that our souls be saved");
     }
-    else if (today === 6){
+    else if (today.getDay() === 6){
         var troparion = selector('.troparion', "O Thou Who by the depth of Thy wisdom, out of love for mankind, dost provide all things, and grantest unto all that which is profitable \
             O only Creator: Grant rest, O Lord, to the souls of Thy servants, for in Thee have they placed their hope, O our Creator and Fashioner and God.")
     }
@@ -63,38 +143,54 @@ const dailyTroparion = function() {
 }
 
 const dailyKontakion = function() {
-    if (today === 0){
-        var kontakion = selector('.kontakion', "<h2>Tone One</h2><p>As God, Thou didst arise from the tomb in glory, and Thou didst raise the world together with Thyself. \
+    if (today.getDay() === 0){
+        if (tone === 1){
+            var kontakion = selector('.kontakion', "As God, Thou didst arise from the tomb in glory, and Thou didst raise the world together with Thyself. \
             And mortal nature praiseth Thee as God, and death hath vanished. And Adam danceth, O Master, and Eve, now freed from fetters, rejoiceth as she creith out: \
-            Thou art He, O Christ, that grantest unto all resurrection.</p>\
-            <h2>Tone Two</h2><p>Thou didst arise from the tomb, O omnipotent Saviour, and hades was terrified on beholding the wonder; and the dead arose, and creation \
-            at the sight thereof rejoiceth with Thee. And Adam also is joyful, and the world, O my Saviour, praiseth Thee for ever.</p>\
-            <h2>Tone Three</h2><p>Thou didst arise today from the tomb, O Merciful One, and didst lead us out of the gates of death. Today Adam danceth and Eve rejoiceth; \
-            and together with them both the Prophets and the Patriarchs unceasingly praise the divine might of Thine authority.</p>\
-            <h2>Tone Four</h2><p>My Saviour and Redeemer hath, as God, raised up the earthborn from the grave and from their fetters, and He hath broken the gates of hades, \
-            and, as Master, hath risen on the third day.</p>\
-            <h2>Tone Five</h2><p>Unto hades, O my Saviour, didst Thou descend, and having broken its gates as One omnipotent, Thou, as Creator, didst raise up the dead together with Thyself. \
-            And Thou didst break the sting of death, and didst deliver Adam from the curse, O Lover of mankind. Wherefore, we all cry unto Thee: Save us, O Lord</p>\
-            <h2>Tone Six</h2><p>Having by His life-bestowing hand raised up all the dead out of the dark abysses, Christ God, the Giver of Life, hath bestowed the Resurrection \
-            upon the fallen human race; for He is the Saviour of all, the Resurrection, and the Life, and the God of all.</p>\
-            <h2>Tone Seven</h2><p>No longer will the dominion of death be able to keep men captive; for Christ hath decended, demolishing and destroying the powers thereof. \
-            Hades is bound; the Prophets rejoice with one voice, saying: A Saviour hath come for them that have faith. Come forth, ye faithful, for the Resurrection</p>\
-            <h2>Tone Eight</h2><p>Having arised from the tomb, Thou didst raise up the dead and didst resurrect Adam. Eve also danceth at Thy Resurrection, and the ends of the world celebrate \
-            Thine arising from the dead, O Greatly-merciful One.</p>");
+            Thou art He, O Christ, that grantest unto all resurrection.");
+        }
+        else if (tone === 2){
+            var kontakion = selector('.kontakion', "Thou didst arise from the tomb, O omnipotent Saviour, and hades was terrified on beholding the wonder; and the dead arose, and creation \
+            at the sight thereof rejoiceth with Thee. And Adam also is joyful, and the world, O my Saviour, praiseth Thee for ever.");
+        }
+        else if (tone === 3){
+            var kontakion = selector('.kontakion', "Thou didst arise today from the tomb, O Merciful One, and didst lead us out of the gates of death. Today Adam danceth and Eve rejoiceth; \
+            and together with them both the Prophets and the Patriarchs unceasingly praise the divine might of Thine authority.");
+        }
+        else if (tone === 4){
+            var kontakion = selector('.kontakion', "My Saviour and Redeemer hath, as God, raised up the earthborn from the grave and from their fetters, and He hath broken the gates of hades, \
+            and, as Master, hath risen on the third day.");
+        }
+        else if (tone === 5){
+            var kontakion = selector('.kontakion', "Unto hades, O my Saviour, didst Thou descend, and having broken its gates as One omnipotent, Thou, as Creator, didst raise up the dead together with Thyself. \
+            And Thou didst break the sting of death, and didst deliver Adam from the curse, O Lover of mankind. Wherefore, we all cry unto Thee: Save us, O Lord.");
+        }
+        else if (tone === 6){
+            var kontakion = selector('.kontakion',"Having by His life-bestowing hand raised up all the dead out of the dark abysses, Christ God, the Giver of Life, hath bestowed the Resurrection \
+            upon the fallen human race; for He is the Saviour of all, the Resurrection, and the Life, and the God of all.");
+        }
+        else if (tone === 7){
+            var kontakion = selector('.kontakion', "No longer will the dominion of death be able to keep men captive; for Christ hath decended, demolishing and destroying the powers thereof. \
+            Hades is bound; the Prophets rejoice with one voice, saying: A Saviour hath come for them that have faith. Come forth, ye faithful, for the Resurrection.");
+        }
+        else{
+            var kontakion = selector('.kontakion', "Having arised from the tomb, Thou didst raise up the dead and didst resurrect Adam. Eve also danceth at Thy Resurrection, and the ends of the world celebrate \
+            Thine arising from the dead, O Greatly-merciful One.");
+        };
     }
-    else if (today === 1){
+    else if (today.getDay() === 1){
         var kontakion = selector('.kontakion', "Supreme Commanders of God and ministers of the Divine Glory, guides of men and leaders of the angels, ask for what it to our profit \
             and for great mercy, since ye are the Supreme Commanders of the Bodiless Hosts.");
     }
-    else if (today === 2){
+    else if (today.getDay() === 2){
         var kontakion = selector('.kontakion', "O Prophet of God and Forerunner of grace, having obtained thy head from the earth as a most sacred rose, we ever receive healings \
             for again, as of old in the world, thou preachest repentance.");
     }
-    else if (today === 4){
+    else if (today.getDay() === 4){
         var kontakion = selector('.kontakion', "In Myra, O Saint, thou didst prove to be a minister of things sacred: for havign fulfilled the Gospel of Christ, O righteous one, \
             thou didst lay down thy life for thy people, and didst save the innocent from death. Wherefore, thou wast sanctified, as a great initiate of the grace of God.");
     }
-    else if (today === 6){
+    else if (today.getDay() === 6){
         var kontakion = selector('.kontakion', "With the saints give rest, O Christ to the souls of Thy servants, where there is neither sorrow, nor sighing, but life everlasting.")
     }
     else {
