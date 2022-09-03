@@ -1,5 +1,52 @@
 [
     {
+        "feast": "The Publican and the Pharisee",
+        "troparion": "Open to me the doors of repentance, O Life-giver. For my spirit rises early to pray towards Thy holy temple, bearing the temple of my body all defiled. But in Thy compassion, purify me by the loving kindness of Thy mercy.",
+        "kontakion": "Let us avoid the proud speaking of the Pharisee and learn humility from the groans of the Publican, and let us cry in penitence: O Saviour of the world, be merciful to Thy servants."
+    },
+    {
+        "feast": "The Prodigal Son",
+        "kontakion": "Having foolishly abandoned Thy paternal glory, I have squandered on vices the wealth Thou gavest me. Therefore I cry to Thee, O compassionate Father, receive me who repent, and treat me as one of Thy hired servants."
+    },
+    {
+        "feast": "Sunday of the Last Judgement",
+        "kontakion": "When Thou comest to earth with glory, O God, and all things tremble, then a river of fire will flow before Thy Judgment Seat, and the books will be opened, and the hidden things made public. Then deliver me from the unquenchable fire and grant me to stand at Thy right hand, O most just Judge."
+    },
+    {
+        "feast": "Cheesefare Sunday",
+        "kontakion": "O Lord, Who art the guide to wisdom, the bestower of prudence, the instructor of the thoughtless, and the protector of the poor, strengthen and enlighten my heart. Give me the gift of expression, O Thou Who art the Word of the Father; for behold I will not prevent my lips from crying to Thee: O Merciful Lord, have mercy on me who have fallen."
+    },
+    {
+        "feast": "Triumph of Orthodoxy",
+        "troparion": "We worship Thy immaculate Image, O Good One, and ask forgiveness of our sins, O Christ God; for of Thy own will Thou wast pleased to ascend the Cross in the flesh, to deliver from slavery to the enemy those whom Thou hadst created. Therefore we thankfully cry to Thee: Thou hast filled all things with joy, O our Saviour, by coming to save the world.",
+        "kontakion": "The illimitable Word of the Father accepted limitations by incarnation from thee, O Mother of God; and He transformed our defiled image to its original state and transfused it with the divine beauty. But we confess and give thanks for our salvation, and we proclaim it by deed and word."
+    },
+    {
+        "feast": "St. Gregory Palamas",
+        "troparion": "Light of Orthodoxy, pillar and doctor of the Church, adornment of monks, invincible champion of theologians, O Gregory the wonderworker, praise of Thessalonica, preacher of grace, ever pray that our souls may be saved.",
+        "kontakion": "Organ of wisdom, holy and divine, bright clarion of theology, we praise thee in harmony, O divine speaker Gregory: But as a mind standing before the First Mind, direct our mind to Him, father, that we may cry: Rejoice, preacher of grace!"
+    },
+    {
+        "feast": "Adoration of the Cross",
+        "troparion": "O Lord, save Thy people and bless Thine inheritance. Grant victory over their enemies to Orthodox Christians, and protect Thy people with Thy Cross.",
+        "kontakion": "O Christ our God, Who wast voluntarily lifted up on the Cross, grant Thy mercies to Thy new people named after Thee. Gladden with Thy power Orthodox Christians and give them victory over their enemies. May they have as an ally that invincible trophy, Thy weapon of peace." 
+    },
+    {
+        "feast": "St John of Lestvichnik",
+        "troparion": "Thou didst prove to be a freeman of the desert, an angel in a body, and a wonder-worker, O our God - bearing Father John. By fasting, vigil and prayer thou didst obtain heavenly gifts, and thou healest the sick and the souls of those who have recourse to thee with faith. Glory to Him Who gave thee strength, glory to Him Who crowned thee, glory to Him Who works through thee healings for all.",
+        "kontakion": "Offering ever-blossoming fruits of learning from thy book, O wise one, thou delightest the hearts of those who study it seriously, O blessed one. For it is a ladder which leads up from the earth to the heavenly and abiding glory souls who with faith honour thee."
+    },
+    {
+        "feast": "St. Mary of Egypt",
+        "troparion": "In thee, O Mother, was carefully preserved what is according to the Image. For thou didst take the Cross and follow Christ. By so doing thou didst teach us to disregard the flesh, for it passes away, but to care for the soul as an immortal thing. Therefore, St. Mary, thy spirit rejoices with the Angels.",
+        "kontakion": "Having escaped the fog of sin, and having illumined thy heart with the light of penitence, O glorious one, thou didst come to Christ and didst offer to Him His immaculate and holy Mother as a merciful intercessor. Hence thou hast found remission for transgressions, and with the angels thou ever rejoicest."
+    },
+    {
+        "feast": "Entry of the Lord",
+        "troparion": "Thou didst give a pledge of the general resurrection before Thy Passion, O Christ our God, by raising Lazarus from the dead. Therefore, we too, like the children, carry the symbols of victory and cry to Thee, the Vanquisher of death: Hosanna in the Heights! Blessed is He Who comes in the Name of the Lord.",
+        "kontakion": "On the throne in heaven and riding a colt on earth, O Christ our God, Thou didst receive the praise of Angels and the chorus of the children who cried to Thee: Blessed art Thou Who comest to recall Adam."
+    },
+    {
         "feast": "Pascha",
         "troparion": "Christ is risen from the dead, trampling on death by death, and on those in the tombs bestowing life. (x3)",
         "kontakion": "Though Thou didst descend into the grave, O Immortal One, yet didst Thou destroy the power of hell, and didst rise again as Conqueror, O Christ our God, saying to the myrrhbearing women, Rejoice! and giving peace to Thine Apostles, and offering to the fallen resurrection."
@@ -47,52 +94,5 @@
         "feast": "All Russian Saints",
         "troparion": "The land of Russia doth offer Thee, O Lord, all the saints who have shone forth in it, as the beauteous fruit of Thy salvific splendor. By their supplications and through the Theotokos preserve Thou the Church and our land in profound peace, O most Merciful One.",
         "kontakion": "Today the choir of the saints who have pleased God in our land standeth forth in the Church and invisibly prayeth to God for us. With them the angels give glory, and all the saints of the Church of Christ celebrate with them; for all together they entreat the pre-eternal God for us."
-    },
-    {
-        "feast": "Entry of the Lord",
-        "troparion": "Thou didst give a pledge of the general resurrection before Thy Passion, O Christ our God, by raising Lazarus from the dead. Therefore, we too, like the children, carry the symbols of victory and cry to Thee, the Vanquisher of death: Hosanna in the Heights! Blessed is He Who comes in the Name of the Lord.",
-        "kontakion": "On the throne in heaven and riding a colt on earth, O Christ our God, Thou didst receive the praise of Angels and the chorus of the children who cried to Thee: Blessed art Thou Who comest to recall Adam."
-    },
-    {
-        "feast": "St. Mary of Egypt",
-        "troparion": "In thee, O Mother, was carefully preserved what is according to the Image. For thou didst take the Cross and follow Christ. By so doing thou didst teach us to disregard the flesh, for it passes away, but to care for the soul as an immortal thing. Therefore, St. Mary, thy spirit rejoices with the Angels.",
-        "kontakion": "Having escaped the fog of sin, and having illumined thy heart with the light of penitence, O glorious one, thou didst come to Christ and didst offer to Him His immaculate and holy Mother as a merciful intercessor. Hence thou hast found remission for transgressions, and with the angels thou ever rejoicest."
-    },
-    {
-        "feast": "St John of Lestvichnik",
-        "troparion": "Thou didst prove to be a freeman of the desert, an angel in a body, and a wonder-worker, O our God - bearing Father John. By fasting, vigil and prayer thou didst obtain heavenly gifts, and thou healest the sick and the souls of those who have recourse to thee with faith. Glory to Him Who gave thee strength, glory to Him Who crowned thee, glory to Him Who works through thee healings for all.",
-        "kontakion": "Offering ever-blossoming fruits of learning from thy book, O wise one, thou delightest the hearts of those who study it seriously, O blessed one. For it is a ladder which leads up from the earth to the heavenly and abiding glory souls who with faith honour thee."
-    },
-    {
-        "feast": "Adoration of the Cross",
-        "troparion": "O Lord, save Thy people and bless Thine inheritance. Grant victory over their enemies to Orthodox Christians, and protect Thy people with Thy Cross.",
-        "kontakion": "O Christ our God, Who wast voluntarily lifted up on the Cross, grant Thy mercies to Thy new people named after Thee. Gladden with Thy power Orthodox Christians and give them victory over their enemies. May they have as an ally that invincible trophy, Thy weapon of peace." 
-    },
-    {
-        "feast": "St. Gregory Palamas",
-        "troparion": "Light of Orthodoxy, pillar and doctor of the Church, adornment of monks, invincible champion of theologians, O Gregory the wonderworker, praise of Thessalonica, preacher of grace, ever pray that our souls may be saved.",
-        "kontakion": "Organ of wisdom, holy and divine, bright clarion of theology, we praise thee in harmony, O divine speaker Gregory: But as a mind standing before the First Mind, direct our mind to Him, father, that we may cry: Rejoice, preacher of grace!"
-    },
-    {
-        "feast": "Triumph of Orthodoxy",
-        "troparion": "We worship Thy immaculate Image, O Good One, and ask forgiveness of our sins, O Christ God; for of Thy own will Thou wast pleased to ascend the Cross in the flesh, to deliver from slavery to the enemy those whom Thou hadst created. Therefore we thankfully cry to Thee: Thou hast filled all things with joy, O our Saviour, by coming to save the world.",
-        "kontakion": "The illimitable Word of the Father accepted limitations by incarnation from thee, O Mother of God; and He transformed our defiled image to its original state and transfused it with the divine beauty. But we confess and give thanks for our salvation, and we proclaim it by deed and word."
-    },
-    {
-        "feast": "Cheesefare Sunday",
-        "kontakion": "O Lord, Who art the guide to wisdom, the bestower of prudence, the instructor of the thoughtless, and the protector of the poor, strengthen and enlighten my heart. Give me the gift of expression, O Thou Who art the Word of the Father; for behold I will not prevent my lips from crying to Thee: O Merciful Lord, have mercy on me who have fallen."
-    },
-    {
-        "feast": "Sunday of the Last Judgement",
-        "kontakion": "When Thou comest to earth with glory, O God, and all things tremble, then a river of fire will flow before Thy Judgment Seat, and the books will be opened, and the hidden things made public. Then deliver me from the unquenchable fire and grant me to stand at Thy right hand, O most just Judge."
-    },
-    {
-        "feast": "The Prodigal Son",
-        "kontakion": "Having foolishly abandoned Thy paternal glory, I have squandered on vices the wealth Thou gavest me. Therefore I cry to Thee, O compassionate Father, receive me who repent, and treat me as one of Thy hired servants."
-    },
-    {
-        "feast": "The Publican and the Pharisee",
-        "troparion": "Open to me the doors of repentance, O Life-giver. For my spirit rises early to pray towards Thy holy temple, bearing the temple of my body all defiled. But in Thy compassion, purify me by the loving kindness of Thy mercy.",
-        "kontakion": "Let us avoid the proud speaking of the Pharisee and learn humility from the groans of the Publican, and let us cry in penitence: O Saviour of the world, be merciful to Thy servants."
     }
 ]

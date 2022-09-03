@@ -1,3 +1,4 @@
+//some js to handle the menu animations
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.navbar__menu');
 
@@ -13,12 +14,13 @@ let today = new Date();
 
 //empty variables to be used later
 let pascha;
-let troparion;
-let kontakion;
-let feastTroparion;
 
 //one week in miliseconds
 const oneWeek = 604800000;
+
+let dailyTroparion;
+let dailyKontakion;
+let feastTroparion;
 
 //retrieves the date of Pascha for next few years
 const paschaDate = function() {
@@ -66,6 +68,8 @@ const paschaDate = function() {
 
 paschaDate();
 
+const lentStart = pascha.getTime() - (oneWeek * 10);
+
 //the tone is reset one week after pascha this is used for the start date
 const calculateStartDate = function() {
     if (today.getFullYear() === 2022) {
@@ -107,46 +111,21 @@ const selector = function(tag, text) {
     return e;
 };
 
+
 //accesses the Sunday troparia and kontakia JSON file, and then sets the troparion and kontakion according to the tone
 const sundayTropariaKontatiaReq = new XMLHttpRequest();
 sundayTropariaKontatiaReq.open('GET', './sunday-troparia-kontakia.json');
 sundayTropariaKontatiaReq.onload = function() {
     const sundayTropariaKontatia = JSON.parse(sundayTropariaKontatiaReq.responseText);
     if (today.getDay() === 0){
-        if (tone === 1){
-            troparion = selector('.troparion', sundayTropariaKontatia[0].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[0].kontakion);
-        }
-        else if (tone === 2){
-            troparion = selector('.troparion', sundayTropariaKontatia[1].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[1].kontakion);
-            }
-        else if (tone === 3){
-            troparion = selector('.troparion', sundayTropariaKontatia[2].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[2].kontakion);
-        }
-        else if (tone === 4){
-            troparion = selector('.troparion', sundayTropariaKontatia[3].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[3].kontakion);
-        }
-        else if (tone === 5){
-            troparion = selector('.troparion', sundayTropariaKontatia[4].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[4].kontakion);
-        }
-        else if (tone === 6){
-            troparion = selector('.troparion', sundayTropariaKontatia[5].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[5].kontakion);
-        }
-        else if (tone === 7){
-            troparion = selector('.troparion', sundayTropariaKontatia[6].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[6].kontakion);
-        }
-        else if (tone === 8){
-            troparion = selector('.troparion', sundayTropariaKontatia[7].troparion);
-            kontakion = selector('.kontakion', sundayTropariaKontatia[7].kontakion);
+        for (var i = 0; i < sundayTropariaKontatia.length; i++){
+            if (i + 1 === tone) {
+                dailyTroparion = selector('.daily-troparion', sundayTropariaKontatia[i].troparion);
+                kontakion = selector('.kontakion', sundayTropariaKontatia[i].kontakion);
+            };
         };
-        return troparion, kontakion;
     };
+    return dailyTroparion, kontakion;
 };
 sundayTropariaKontatiaReq.send();
 
@@ -155,163 +134,54 @@ const dailyTropariaKontakiaReq = new XMLHttpRequest();
 dailyTropariaKontakiaReq.open('GET', './daily-troparia-kontakia.json');
 dailyTropariaKontakiaReq.onload = function() {
     const dailyTropariaKontakia = JSON.parse(dailyTropariaKontakiaReq.responseText);
-    if (today.getDay() === 1){
-        troparion = selector('.troparion', dailyTropariaKontakia[0].troparion);
-        kontakion = selector('.kontakion', dailyTropariaKontakia[0].kontakion);
-    }
-    else if (today.getDay() === 2){
-        troparion = selector('.troparion', dailyTropariaKontakia[1].troparion);
-        kontakion = selector('.kontakion', dailyTropariaKontakia[1].kontakion);
-    }
-    else if (today.getDay() === 4){
-        troparion = selector('.troparion', dailyTropariaKontakia[3].troparion);
-        kontakion = selector('.kontakion', dailyTropariaKontakia[3].kontakion);
-    }
-    else if (today.getDay() === 6){
-        troparion = selector('.troparion', dailyTropariaKontakia[4].troparion);
-        kontakion = selector('.kontakion', dailyTropariaKontakia[4].kontakion);
-    }
-    else if (today.getDay() === 3 || today.getDay() === 5) {
-        troparion = selector('.troparion', dailyTropariaKontakia[2].troparion);
-        kontakion = selector('.kontakion', dailyTropariaKontakia[2].kontakion);
+    for (var i = 0; i < dailyTropariaKontakia.length; i++){
+        if (today.getDay === 0) {
+            void[0];
+        };
+        if (today.getDay() === i + 1){
+            dailyTroparion = selector('.daily-troparion', dailyTropariaKontakia[i].troparion);
+            kontakion = selector('.kontakion', dailyTropariaKontakia[i].kontakion);
+        }
     };
-    return troparion, kontakion;
+    return dailyTroparion, kontakion;
 };
 dailyTropariaKontakiaReq.send();
+
+const calendarOfFeastsReq = new XMLHttpRequest();
+calendarOfFeastsReq.open('GET', './daily-feasts.json');
+calendarOfFeastsReq.onload = function(){
+    const calendarOfFeasts = JSON.parse(calendarOfFeastsReq.responseText);
+    for (var i = 0; i < calendarOfFeasts.length; i++){
+        if(today.getDate() === calendarOfFeasts[i].day && today.getMonth() === calendarOfFeasts[i].month){
+            feastTroparion = selector('.feast-troparion', calendarOfFeasts[i].troparion);
+            kontakion = selector('.kontakion', calendarOfFeasts[i].kontakion);
+        };
+    };
+    return feastTroparion, kontakion;
+};
+calendarOfFeastsReq.send();
+
 
 //retrieves data from Sunday feasts JSON file and sets special troparion and kontakion based around the number of weeks before or after Pascha
 const sundayFeastsReq = new XMLHttpRequest();
 sundayFeastsReq.open('GET', './sunday-feasts.json');
 sundayFeastsReq.onload = function() {
     const sundayFeast = JSON.parse(sundayFeastsReq.responseText);
-    if (today.getTime() === pascha.getTime()) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[0].troparion);
-        kontakion = selector('.kontakion', sundayFeast[0].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + oneWeek) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[1].troparion);
-        kontakion = selector('.kontakion', sundayFeast[1].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 2)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[2].troparion);
-        kontakion = selector('.kontakion', sundayFeast[2].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 3)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[3].troparion);
-        kontakion = selector('.kontakion', sundayFeast[3].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 4)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[4].troparion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 5)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[5].troparion);
-        kontakion = selector('.kontakion', sundayFeast[5].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 6)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[6].troparion);
-        kontakion = selector('.kontakion', sundayFeast[6].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 7)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[7].troparion);
-        kontakion = selector('.kontakion', sundayFeast[7].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 8)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[8].troparion);
-        kontakion = selector('.kontakion', sundayFeast[8].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() + (oneWeek * 9)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[9].troparion);
-        kontakion = selector('.kontakion', sundayFeast[9].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - oneWeek) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[10].troparion);
-        kontakion = selector('.kontakion', sundayFeast[10].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 2)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[11].troparion);
-        kontakion = selector('.kontakion', sundayFeast[11].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 3)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[12].troparion);
-        kontakion = selector('.kontakion', sundayFeast[12].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 4)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[13].troparion);
-        kontakion = selector('.kontakion', sundayFeast[13].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 5)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[14].troparion);
-        kontakion = selector('.kontakion', sundayFeast[14].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 6)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[15].troparion);
-        kontakion = selector('.kontakion', sundayFeast[15].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 7)) {
-        kontakion = selector('.kontakion', sundayFeast[16].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 8)) {
-        kontakion = selector('.kontakion', sundayFeast[17].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 9)) {
-        kontakion = selector('.kontakion', sundayFeast[18].kontakion);
-    };
-    if (today.getTime() === pascha.getTime() - (oneWeek * 10)) {
-        feastTroparion = selector('.feast-troparion', sundayFeast[19].troparion);
-        kontakion = selector('.kontakion', sundayFeast[19].kontakion);
+    let d = lentStart;
+    for (var i = 0; i < sundayFeast.length; i++){
+        if (today.getTime() === d){
+            kontakion = "";
+            feastTroparion = selector('.feast-troparion', sundayFeast[i].troparion);
+            kontakion = selector('.kontakion', sundayFeast[i].kontakion);
+        };
+        d = d + oneWeek;
+
     };
     return feastTroparion, kontakion;
 };
 sundayFeastsReq.send();
 
-//gets data from fixed feasts JSON file and sets troparia and kontakia for the fixed feasts in the year
-const fixedFeastsReq = new XMLHttpRequest();
-fixedFeastsReq.open('GET', './fixed-feasts.json');
-fixedFeastsReq.onload = function() {
-    const fixedFeast = JSON.parse(fixedFeastsReq.responseText);
-    if (today.getDate() === 21 && today.getMonth() === 8) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[0].troparion);
-        kontakion = selector('.kontakion', fixedFeast[0].kontakion);
-    }
-    if (today.getDate() === 27 && today.getMonth() === 8) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[1].troparion);
-        kontakion = selector('.kontakion', fixedFeast[1].kontakion);
-    }
-    if (today.getDate() === 4 && today.getMonth() === 11) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[2].troparion);
-        kontakion = selector('.kontakion', fixedFeast[2].kontakion);
-    }
-    if (today.getDate() === 7 && today.getMonth() === 0) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[3].troparion);
-        kontakion = selector('.kontakion', fixedFeast[3].kontakion);
-    }
-    if (today.getDate() === 19 && today.getMonth() === 0) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[4].troparion);
-        kontakion = selector('.kontakion', fixedFeast[4].kontakion);
-    }
-    if (today.getDate() === 15 && today.getMonth() === 1) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[5].troparion);
-        kontakion = selector('.kontakion', fixedFeast[5].kontakion);
-    }
-    if (today.getDate() === 7 && today.getMonth() === 3) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[6].troparion);
-        kontakion = selector('.kontakion', fixedFeast[6].kontakion);
-    }
-    if (today.getDate() === 19 && today.getMonth() === 7) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[10].troparion);
-        kontakion = selector('.kontakion', fixedFeast[10].kontakion);
-    }
-    if (today.getDate() === 28 && today.getMonth() === 7) {
-        feastTroparion = selector('.feast-troparion', fixedFeast[11].troparion);
-        kontakion = selector('.kontakion', fixedFeast[11].kontakion);
-    }
-    else {
-        void[0];
-    };
-    return feastTroparion, kontakion;
-};
-fixedFeastsReq.send();
-
+//takes repeated parts from the JSON file and inserts them into the HTML file where needed
 const repeatedPartsReq = new XMLHttpRequest();
 repeatedPartsReq.open('GET', './repeated-parts.json');
 repeatedPartsReq.onload = function(){
@@ -333,3 +203,7 @@ repeatedPartsReq.onload = function(){
     return oCome, gloryBoth, alleluia, mercyThree, glory, both, trisagion, mercyFourty, hours, moreHonourable, holyFathers, heavenlyKing, mercyTwelve, trulyMeet;
 };
 repeatedPartsReq.send();
+
+
+
+
