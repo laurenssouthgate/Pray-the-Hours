@@ -8,6 +8,7 @@ const mobileMenu = () => {
 };
 
 menu.addEventListener('click', mobileMenu);
+
 // startDate represents the date at which the tone of the week is reset to Tone One
 let startDate;
 let today = new Date();
@@ -102,107 +103,93 @@ function get_week(startDate, today) {
 //this sets the tone of the week
 let tone = get_week(startDate, today) + 1;
 
-//a function to select a tag and edit the innerHTML
-const selector = function(tag, text) {
-    var e = document.querySelectorAll(tag);
-    for (var i = 0; i < e.length; i++){
-        e[i].innerHTML = text;
-    }
-    return e;
-};
-
 
 //accesses the Sunday troparia and kontakia JSON file, and then sets the troparion and kontakion according to the tone
-const sundayTropariaKontatiaReq = new XMLHttpRequest();
-sundayTropariaKontatiaReq.open('GET', './sunday-troparia-kontakia.json');
-sundayTropariaKontatiaReq.onload = function() {
-    const sundayTropariaKontatia = JSON.parse(sundayTropariaKontatiaReq.responseText);
-    if (today.getDay() === 0){
-        for (var i = 0; i < sundayTropariaKontatia.length; i++){
-            if (i + 1 === tone) {
-                dailyTroparion = selector('.daily-troparion', sundayTropariaKontatia[i].troparion);
-                kontakion = selector('.kontakion', sundayTropariaKontatia[i].kontakion);
-            };
+$.ajax({
+	type: 'GET',
+	url: './sunday-troparia-kontakia.json',
+	success: function(data) {
+		if (today.getDay() === 0){
+			$.each(data, function(i) {
+				if (i + 1 === tone) {
+					dailyTroparion = $('.daily-troparion').html(data[i].troparion);
+					kontakion = $('.kontakion').html(data[i].kontakion);
+				}
+            });
         };
-    };
-    return dailyTroparion, kontakion;
-};
-sundayTropariaKontatiaReq.send();
-
+    }
+});
 //retrieves the daily troparia and kontakia from the JSON file and sets the troparion and kontakion based on the day of the week
-const dailyTropariaKontakiaReq = new XMLHttpRequest();
-dailyTropariaKontakiaReq.open('GET', './daily-troparia-kontakia.json');
-dailyTropariaKontakiaReq.onload = function() {
-    const dailyTropariaKontakia = JSON.parse(dailyTropariaKontakiaReq.responseText);
-    for (var i = 0; i < dailyTropariaKontakia.length; i++){
-        if (today.getDay === 0) {
-            void[0];
-        };
-        if (today.getDay() === i + 1){
-            dailyTroparion = selector('.daily-troparion', dailyTropariaKontakia[i].troparion);
-            kontakion = selector('.kontakion', dailyTropariaKontakia[i].kontakion);
-        }
-    };
-    return dailyTroparion, kontakion;
-};
-dailyTropariaKontakiaReq.send();
+$.ajax({
+    type: 'GET',
+    url: './daily-troparia-kontakia.json',
+    success: function(data) {
+        $.each(data, function(i) {
+            if (today.getDay === 0) {
+                void[0];
+            };
+            if (today.getDay() === i + 1) {
+                dailyTroparion = $('.daily-troparion').html(data[i].troparion);
+                kontakion = $('.kontakion').html(data[i].kontakion);
+            };
+        });
+    }
+});
 
-const calendarOfFeastsReq = new XMLHttpRequest();
-calendarOfFeastsReq.open('GET', './daily-feasts.json');
-calendarOfFeastsReq.onload = function(){
-    const calendarOfFeasts = JSON.parse(calendarOfFeastsReq.responseText);
-    for (var i = 0; i < calendarOfFeasts.length; i++){
-        if(today.getDate() === calendarOfFeasts[i].day && today.getMonth() === calendarOfFeasts[i].month){
-            feastTroparion = selector('.feast-troparion', calendarOfFeasts[i].troparion);
-            kontakion = selector('.kontakion', calendarOfFeasts[i].kontakion);
-        };
-    };
-    return feastTroparion, kontakion;
-};
-calendarOfFeastsReq.send();
+$.ajax({
+    type: 'GET',
+    url: './daily-feasts.json',
+    success: function(data) {
+        $.each(data, function(i){
+            if (today.getDate() === data[i].day && today.getMonth() === data[i].month) {
+                feastTroparion = $('.feast-troparion').html(data[i].troparion);
+                kontakion = $('.kontakion').html(data[i].kontakion);
+            };
+        });
+    }
+});
 
 
 //retrieves data from Sunday feasts JSON file and sets special troparion and kontakion based around the number of weeks before or after Pascha
-const sundayFeastsReq = new XMLHttpRequest();
-sundayFeastsReq.open('GET', './sunday-feasts.json');
-sundayFeastsReq.onload = function() {
-    const sundayFeast = JSON.parse(sundayFeastsReq.responseText);
-    let d = lentStart;
-    for (var i = 0; i < sundayFeast.length; i++){
-        if (today.getTime() === d){
-            kontakion = "";
-            feastTroparion = selector('.feast-troparion', sundayFeast[i].troparion);
-            kontakion = selector('.kontakion', sundayFeast[i].kontakion);
-        };
-        d = d + oneWeek;
-
-    };
-    return feastTroparion, kontakion;
-};
-sundayFeastsReq.send();
+$.ajax({
+    type: 'GET',
+    url: './sunday-feasts.json',
+    success: function(data) {
+        let d = lentStart;
+        $.each(data, function(i){
+            if (today.getTime() === d){
+                kontakion = "";
+                feastTroparion = $('.feast-troparion').html(data[i].troparion);
+                kontakion = $('.kontakion').html(data[i].kontakion);
+            };
+            d = d + oneWeek;
+        });
+    }
+});
 
 //takes repeated parts from the JSON file and inserts them into the HTML file where needed
-const repeatedPartsReq = new XMLHttpRequest();
-repeatedPartsReq.open('GET', './repeated-parts.json');
-repeatedPartsReq.onload = function(){
-    const repeatedParts = JSON.parse(repeatedPartsReq.responseText);
-    const oCome = selector('.o-come', repeatedParts[0].text);
-    const gloryBoth = selector('.glory-both', repeatedParts[1].text);
-    const alleluia = selector('.alleluia', repeatedParts[2].text);
-    const mercyThree = selector('.mercy-3', repeatedParts[3].text);
-    const glory = selector('.glory', repeatedParts[4].text);
-    const both = selector('.both', repeatedParts[5].text);
-    const trisagion = selector('.trisagion', repeatedParts[6].text);
-    const mercyFourty = selector('.mercy-40', repeatedParts[7].text);
-    const hours = selector('.hours', repeatedParts[8].text);
-    const moreHonourable = selector('.more-honourable', repeatedParts[9].text);
-    const holyFathers = selector('.holy-fathers', repeatedParts[10].text);
-    const heavenlyKing = selector('.heavenly-king', repeatedParts[11].text);
-    const mercyTwelve = selector('.mercy-12', repeatedParts[12].text);
-    const trulyMeet = selector('.truly-meet', repeatedParts[13].text);
-    return oCome, gloryBoth, alleluia, mercyThree, glory, both, trisagion, mercyFourty, hours, moreHonourable, holyFathers, heavenlyKing, mercyTwelve, trulyMeet;
-};
-repeatedPartsReq.send();
+
+$.ajax({
+    type: 'GET',
+    url: './repeated-parts.json',
+    success: function(data) {
+        const oCome = $('.o-come').html(data[0].text);
+        const gloryBoth = $('.glory-both').html(data[1].text);
+        const alleluia = $('.alleluia').html(data[2].text);
+        const mercyThree = $('.mercy-3').html(data[3].text);
+        const glory = $('.glory').html(data[4].text);
+        const both = $('.both').html(data[5].text);
+        const trisagion = $('.trisagion').html(data[6].text);
+        const mercyFourty = $('.mercy-40').html(data[7].text);
+        const hours = $('.hours').html(data[8].text);
+        const moreHonourable = $('.more-honourable').html(data[9].text);
+        const holyFathers = $('.holy-fathers').html(data[10].text);
+        const heavenlyKing = $('.heavenly-king').html(data[11].text);
+        const mercyTwelve = $('.mercy-12').html(data[12].text);
+        const trulyMeet = $('.truly-meet').html(data[13].text); 
+        return oCome, gloryBoth, alleluia, mercyThree, glory, both, trisagion, mercyFourty, hours, moreHonourable, holyFathers, heavenlyKing, mercyTwelve, trulyMeet;
+    }
+});
 
 
 
