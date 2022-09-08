@@ -107,7 +107,8 @@ let tone = get_week(startDate, today) + 1;
 //accesses the Sunday troparia and kontakia JSON file, and then sets the troparion and kontakion according to the tone
 $.ajax({
 	type: 'GET',
-	url: './sunday-troparia-kontakia.json',
+	url: 'https://raw.githubusercontent.com/laurenssouthgate/Pray-the-Hours/main/sunday-troparia-kontakia.json',
+    dataType: 'json',
 	success: function(data) {
 		if (today.getDay() === 0){
 			$.each(data, function(i) {
@@ -122,7 +123,8 @@ $.ajax({
 //retrieves the daily troparia and kontakia from the JSON file and sets the troparion and kontakion based on the day of the week
 $.ajax({
     type: 'GET',
-    url: './daily-troparia-kontakia.json',
+    url: 'https://raw.githubusercontent.com/laurenssouthgate/Pray-the-Hours/main/daily-troparia-kontakia.json',
+    dataType: 'json',
     success: function(data) {
         $.each(data, function(i) {
             if (today.getDay === 0) {
@@ -138,7 +140,8 @@ $.ajax({
 
 $.ajax({
     type: 'GET',
-    url: './daily-feasts.json',
+    url: 'https://raw.githubusercontent.com/laurenssouthgate/Pray-the-Hours/main/daily-feasts.json',
+    dataType: 'json',
     success: function(data) {
         $.each(data, function(i){
             if (today.getDate() === data[i].day && today.getMonth() === data[i].month) {
@@ -153,7 +156,8 @@ $.ajax({
 //retrieves data from Sunday feasts JSON file and sets special troparion and kontakion based around the number of weeks before or after Pascha
 $.ajax({
     type: 'GET',
-    url: './sunday-feasts.json',
+    url: 'https://raw.githubusercontent.com/laurenssouthgate/Pray-the-Hours/main/sunday-feasts.json',
+    dataType: 'json',
     success: function(data) {
         let d = lentStart;
         $.each(data, function(i){
@@ -171,7 +175,8 @@ $.ajax({
 
 $.ajax({
     type: 'GET',
-    url: './repeated-parts.json',
+    url: 'https://raw.githubusercontent.com/laurenssouthgate/Pray-the-Hours/main/repeated-parts.json',
+    dataType: 'json',
     success: function(data) {
         const oCome = $('.o-come').html(data[0].text);
         const gloryBoth = $('.glory-both').html(data[1].text);
