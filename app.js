@@ -22,6 +22,7 @@ const oneWeek = 604800000;
 let dailyTroparion;
 let dailyKontakion;
 let feastTroparion;
+let feastName;
 
 //retrieves the date of Pascha for next few years
 const paschaDate = function() {
@@ -145,6 +146,7 @@ $.ajax({
     success: function(data) {
         $.each(data, function(i){
             if (today.getDate() === data[i].day && today.getMonth() === data[i].month) {
+                feastName = $('.feast-name').html('<i>' + data[i].name + ':</i>');
                 feastTroparion = $('.feast-troparion').html(data[i].troparion);
                 kontakion = $('.kontakion').html(data[i].kontakion);
             };
