@@ -9,4 +9,4 @@ services accurately one would need to do a lot of preparation, own a lot of book
 together these services without the user needing to do any thinking.
 
 This is achieved using JSON databases that contain all of the troparia and kontakia, as well as the repeated prayers, these are then imported into the .js file using
-AJAX, the Javascript then does all the work calculating the date and bringing up the right troparia and kontakia for the day. 
+AJAX, the Javascript and JQuery then does all the work calculating the date and bringing up the right troparia and kontakia for the day. 
